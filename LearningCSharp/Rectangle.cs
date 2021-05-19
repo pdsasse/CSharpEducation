@@ -10,79 +10,68 @@ namespace LearningCSharp
     {
         private double _length = 0;
         private double _width = 0;
-        public double Length
+        
+        public void Length(string value)
         {
-            get { return _length; }
-            set
+
+            try
+
             {
-                _length = value;
+                _length = Convert.ToDouble( value);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
+        public void Length(double value)
+        {
+            _length = value;
+        }
+
+        public double Length()
+        {
+            return _length;
+        }
+
+        public void Width(string value)
+        {
+            try
+            {
+                _width = Convert.ToDouble(value);
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
-        public double Width
+
+        public void Width(double value)
         {
-            get { return _width; }
-            set
-            {
-                _width = value;
-            }
+            _width = value;
+        }
+        public double Width()
+        {
+            return _width;
         }
 
         public double Area
         {
             get { return _length * _width; }
         }
-        public double perimeter
+        public double Perimeter
         {
             get { return (_length * 2) + (_width * 2); }
         }
-        public void PrintArea()
+        
+        public double Diagonal
         {
-            Console.WriteLine($"Area is: {_length * _width}");
+            get { return  Math.Sqrt( Math.Pow(_length,2) + Math.Pow(_width, 2)) ;  }
         }
-        public void PrintPerimeter()
-        {
-            Console.WriteLine($"Perimeter is: {(_width * 2) + (_length * 2)}");
-        }
-        public bool GetLengthAndWidth()
-        {
-            string buffer = "";
-            bool success = false;
-            do
-            {
-                try
-                {
-                    Console.Write("Enter Length: ");
-                    buffer = Console.ReadLine();
-                    this.Length = Convert.ToDouble(buffer);
-                    success = true;
-                }
-                catch
-                {
-                    Console.WriteLine("You must enter a valid nueric value.");
-                }
 
-            }
-            while (!success);
-            success = false;
-            buffer = "";
-            do
-            {
-                try
-                {
-                    Console.Write("Enter width: ");
-                    buffer = Console.ReadLine();
-                    this.Width = Convert.ToDouble(buffer);
-                    success = true;
-                }
-                catch
-                {
-                    Console.WriteLine("You must enter a valid nueric value.");
-                }
 
-            }
-            while (!success);
-            return true;
-        }
     }
 }
 
