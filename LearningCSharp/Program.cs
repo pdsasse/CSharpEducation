@@ -69,11 +69,11 @@ namespace LearningCSharp
             }
 
             Console.Clear();
-            Console.WriteLine($"The Width is: {Rect.Width}");
-            Console.WriteLine($"The Length is: {Rect.Length}");
-            Console.WriteLine($"The area is: {Rect.Area}");
-            Console.WriteLine($"The Perimeter is: {Rect.Perimeter}");
-            Console.WriteLine($"The Diaganol is: {Rect.Diagonal}");
+            Console.WriteLine($"The Width is: {Rect.Width.Value}");
+            Console.WriteLine($"The Length is: {Rect.Length.Value}");
+            Console.WriteLine($"The area is: {Rect.Area.Value}");
+            Console.WriteLine($"The Perimeter is: {Rect.Perimeter.Value}");
+            Console.WriteLine($"The Diaganol is: {Rect.Diagonal.Value}");
 
             Console.ReadLine();
         }

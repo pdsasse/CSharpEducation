@@ -26,11 +26,11 @@ namespace LearningCSharp
             }
         }
 
-        public static AreaUnit operator*(LengthUnit Left, LengthUnit Right)
+        public static LengthUnit operator*(LengthUnit Left, LengthUnit Right)
         {
-            return new AreaUnit()
+            return new LengthUnit()
             {
-                Length = Left.LengthInInches * Right.LengthInInches,
+                Value = Left.LengthInInches * Right.LengthInInches,
                 Unit = Unit.Inch
             };
         }
@@ -55,11 +55,11 @@ namespace LearningCSharp
 
     }
 
-    public class AreaUnit
-    {
-        public Unit Unit { get; set; }
-        public double Length { get; set; }
-    }
+    //public class AreaUnit
+    //{
+    //    public Unit Unit { get; set; }
+    //    public double Length { get; set; }
+    //}
 
 
 
@@ -68,21 +68,21 @@ namespace LearningCSharp
         public LengthUnit Length { get; } = new();
         public LengthUnit Width { get; } = new();
 
-        public AreaUnit Area
+        public LengthUnit Area
         {
-            get { return Length * Width; }
+            get { return Length * Width; } 
         }
         public LengthUnit Perimeter
         {
             get { return (Length * 2) + (Width * 2); }
         }
 
-        public AreaUnit Diagonal
+        public LengthUnit Diagonal
         {
             get {
-                return new AreaUnit()
+                return new LengthUnit()
                 {
-                    Length = Math.Sqrt(Math.Pow(Length.LengthInInches, 2) + Math.Pow(Width.LengthInInches, 2)),
+                    Value = Math.Sqrt(Math.Pow(Length.LengthInInches, 2) + Math.Pow(Width.LengthInInches, 2)),
                     Unit = Unit.Inch
                 };
             }
