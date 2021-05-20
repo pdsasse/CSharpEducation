@@ -11,51 +11,71 @@ namespace LearningCSharp
         {
 
             var Rect = new Rectangle();
-            Boolean Success;
-
-            do
             {
-                
-                try
+                var Success = false;
+                do //Get the Width
                 {
+
+
+
                     Console.Write("Please enter the Width: ");
-                    Rect.Width(Console.ReadLine());
-                    Success = true;
-                }
-                catch (Exception)
-                {
-                    Success = false;
-                    Console.Clear();
-                    Console.WriteLine("You must enter a valid Width!");
-                    Console.WriteLine("Please try again.");
-                } 
-            } while (Success==false);
+                    if (double.TryParse(Console.ReadLine(), out var Width))
+                    {
+                        Rect.Width.Value = Width;
+                        Console.WriteLine("What are the units for the Width? (I=Inches, F=Feet, Y=Yards): ");
+                        
+                        string UnitIn = Console.ReadLine();
+                        switch (UnitIn.ToUpper())
+                        {
+                            case "I":
+                                    Rect.Width.Unit = Unit.Inch;
+                                break;
+                            case "F":
+                                    Rect.Width.Unit = Unit.Foot;
+                                break;
+                            case  "Y":
+                                    Rect.Width.Unit = Unit.Yard;
+                                break;
+                        }
+                        Success = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You must enter a valid Width!");
+                        Console.WriteLine("Please try again.");
+                    }
 
-            do
+                } while (Success == false);
+            }
+
             {
-                Success = false;
-                try
-                {
-                    Console.Write("Please enter the Length: ");
-                    Rect.Length(Console.ReadLine());
-                    Success = true;
-                }
-                catch (Exception)
+                var Success = false;
+                do //Get the length
                 {
 
-                    Success = false;
-                    Console.Clear();
-                    Console.WriteLine("You must enter a valid Length!");
-                    Console.WriteLine("Please try again.");
-                }
-            } while (Success == false);
+                    Console.Write("Please enter the Length: ");
+                    if (double.TryParse(Console.ReadLine(), out var Length))
+                    {
+                        Rect.Length.Value = Length;
+                        Success = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You must enter a valid Length!");
+                        Console.WriteLine("Please try again.");
+                    }
+
+                } while (Success == false);
+            }
 
             Console.Clear();
-            Console.WriteLine($"The Width is: {Rect.Width()}");
-            Console.WriteLine($"The Length is: {Rect.Length()}");
+            Console.WriteLine($"The Width is: {Rect.Width}");
+            Console.WriteLine($"The Length is: {Rect.Length}");
             Console.WriteLine($"The area is: {Rect.Area}");
             Console.WriteLine($"The Perimeter is: {Rect.Perimeter}");
             Console.WriteLine($"The Diaganol is: {Rect.Diagonal}");
+
+            Console.ReadLine();
         }
     }
 }

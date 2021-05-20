@@ -6,7 +6,90 @@ using System.Threading.Tasks;
 
 namespace LearningCSharp
 {
-    class Rectangle
+
+    public enum Unit
+    {
+        Inch = 1,
+        Foot = 12,
+        Yard = 36,
+    }
+
+    public class LengthUnit
+    {
+        public Unit Unit { get; set; }
+        public double Value { get; set; }
+
+        public double LengthInInches
+        {
+            get {
+                return (double)Unit * Value;
+            }
+        }
+
+        public static AreaUnit operator*(LengthUnit Left, LengthUnit Right)
+        {
+            return new AreaUnit()
+            {
+                Length = Left.LengthInInches * Right.LengthInInches,
+                Unit = Unit.Inch
+            };
+        }
+
+        public static LengthUnit operator*(LengthUnit Left, int Right)
+        {
+            return new LengthUnit()
+            {
+                Value = Left.LengthInInches * Right,
+                Unit = Unit.Inch
+            };
+        }
+
+        public static LengthUnit operator+(LengthUnit Left, LengthUnit Right)
+        {
+            return new LengthUnit()
+            {
+                Value = Left.LengthInInches + Right.LengthInInches,
+                Unit = Unit.Inch
+            };
+        }
+
+    }
+
+    public class AreaUnit
+    {
+        public Unit Unit { get; set; }
+        public double Length { get; set; }
+    }
+
+
+
+    public class Rectangle
+    {
+        public LengthUnit Length { get; } = new();
+        public LengthUnit Width { get; } = new();
+
+        public AreaUnit Area
+        {
+            get { return Length * Width; }
+        }
+        public LengthUnit Perimeter
+        {
+            get { return (Length * 2) + (Width * 2); }
+        }
+
+        public AreaUnit Diagonal
+        {
+            get {
+                return new AreaUnit()
+                {
+                    Length = Math.Sqrt(Math.Pow(Length.LengthInInches, 2) + Math.Pow(Width.LengthInInches, 2)),
+                    Unit = Unit.Inch
+                };
+            }
+        }
+    }
+
+    class Rectangle_old
     {
         private double _length = 0;
         private double _width = 0;
