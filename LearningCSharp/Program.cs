@@ -6,8 +6,15 @@ namespace LearningCSharp
     
     class Program
     {
-  
+
         public static void Main()
+        {
+            var RandomString = new RandomCode();
+            RandomString.ValueList = new System.Collections.ArrayList() { "1", "0","O" };
+            RandomString.StringLength = 100;
+            Console.WriteLine(RandomString.Value);
+        }
+            public static void Main_Old()
         {
 
             var Rect = new Rectangle();
